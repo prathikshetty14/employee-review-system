@@ -2,6 +2,8 @@
   display: none; 
   padding: 20px; 
   text-align: center;
+  height:88vh;
+  overflow-y: scroll;
 
   &.show-all-review {
     display: flex; 
