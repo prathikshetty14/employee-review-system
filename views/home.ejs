@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<!-- Assigned Reviews Section -->
+<div id="assignedReview" class="review-section">
+    <h2>Assigned Reviews</h2>
+    <div id="assignReviews-div">
+        <% if(user.assignedReviews.length === 0) { %>
+
+            <!-- Display a message when no employee is assigned to review -->
+            <p>No employee assigned to review you yet...</p>
+
+        <% } else { %>
+
+            <!-- Loop through assigned reviews and display review forms -->
+            <% for(let AssignedReview of user.assignedReviews) { %>
+                <form action="/completeReview" method="post">
+                    <label for="">To : <%= AssignedReview.toUser.name %></label>
+                    <textarea id="message" name="message" placeholder="Enter Review comments" required></textarea>
+                    <input type="hidden" name="toUser" value="<%= AssignedReview.toUser._id %>">
+                    <button type="submit">Submit</button>
+                </form>
+            <% } %>
+        <% } %>
+        
+    </div>
+</div>
+
+<!-- My Reviews Section -->
+<div id="myReview" class="review-section">
+    <h2>My Reviews</h2>
+
+    <%if(user.myReviews.length === 0) { %>
+        <p class="myReview-empty">No one has reviewed you yet...</p>
+    <% } else { %>
+        <% for(let MyReview of user.myReviews) { %>
+
+            <!-- Loop through user's own reviews and display them -->
+            <div id="myReviews-div">
+                <p>From : <%= MyReview.fromUser.name %></p>
+                <p>Review : <span><%= MyReview.message %></span></p>
+                <hr>
+            </div>
+        <% } %>
+    <% } %>
+</div>

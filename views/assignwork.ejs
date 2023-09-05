@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="/css/assignwork.css">
+
+<!-- Main Container -->
+<div id="main-div">
+    <h1>Assign Review to Employees</h1>
+    <hr>
+
+    <!-- Review Assignment Form -->
+    <form action="/review/createReview" method="post">
+
+        <!-- Select Employee to be Reviewed -->
+        <label for="recipient">Person to be Reviewed : </label>
+        <select name="recipient" id="recipient">
+            <%for(let user of users){%>
+                <option value="<%=user.id%>"><%=user.name%></option>
+                <%}%>
+        </select>
+        
+        <!-- Select Reviewer -->
+        <label for="reviewer">Reviewer : </label>
+        <select name="reviewer" id="Reviewer">
+            <%for(let user of users){%>
+                <option value="<%=user.id%>"><%=user.name%></option>
+                <%}%>
+            
+        <!-- Submit Button -->
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</div>

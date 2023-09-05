@@ -1,0 +1,41 @@
+<!-- Header Section -->
+<header>
+
+    <!-- Main Container for Header Content -->
+    <div class="header-main-div">
+        <div>
+            <p class="title-style"><i class="fas fa-briefcase"> </i> Employee Review System</p>
+        </div>
+
+        <!-- Navigation Menu -->
+        <div>
+            <ul>
+                <!-- Check if User is Logged In -->
+                <% if(locals.user){%>
+
+                    <!-- Check if User is an Admin -->
+                    <%if(locals.user.permission=='admin'){%>
+
+                        <!-- Admin Navigation Links -->
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/review/assignWork">Assign</a></li>
+                        <li><a href="/employee/home">Employees List</a></li>
+                        <li><a href="/employee/adminpage">Admin View</a></li>
+                    <%}%>
+
+                    <!-- Common Navigation Links -->
+                    <li><a href="/users/Signout">Sign Out</a></li>
+                    <li class="username"><i>Welcome <%=user.name%>!</i>
+                    </li>
+
+                    <!-- User is Not Logged In -->
+                    <% }else{%>
+
+                        <li><a href="/users/Signin">Login</a></li>
+                        <li><a href="/users/Signup">Register</a></li>
+                        <%}%>
+            </ul>
+        </div>
+    </div>
+
+</header>

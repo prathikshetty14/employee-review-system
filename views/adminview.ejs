@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="/css/admin.css">
+
+<!-- All Reviews Section -->
+<div id="allReview" class="<%= user.permission === 'admin' ? 'show-all-review' : 'hide-all-review' %>">
+    <% if (user.permission === 'admin') { %>
+
+        <!-- Display All Reviews -->
+        <div class="review-section">
+
+            <h3>All Reviews</h3>
+
+            <div id="myReviews-div">
+                <% if(myReviews.length === 0) { %>
+
+                        <!-- Display a message when no reviews are available -->
+                    <p> No review has been assigned to view...</p>
+
+                <% } else { %>
+
+                    <!-- Loop through and display each review -->
+                    <% for (let myReview of myReviews) { %>
+                        <p>From: <%= myReview.fromUser ? myReview.fromUser.name : 'User not found' %></p>
+                        <p>To: <%= myReview.toUser ? myReview.toUser.name : 'User not found' %></p>
+                        <p>Review: <%= myReview.message %></p>
+    
+                        <!-- Add a form to update the review -->
+                        <form action="updateReview/<%= myReview._id %>" method="post">
+                            <textarea name="message" placeholder="Update review" required></textarea>
+                            <button type="submit">Update</button>
+                        </form>
+                        
+                        <!-- Add a form to delete the review -->
+                        <form action="deleteReview/<%= myReview._id %>" method="get">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <hr>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    <% } else { %>
+        
+        <!-- Display a message for non-admin users -->
+        Admin View only
+    <% } %>
+</div>
+
